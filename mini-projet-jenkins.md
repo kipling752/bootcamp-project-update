@@ -1,52 +1,40 @@
 # Projet : Création d'une Pipeline CI/CD avec Jenkins
 
 ## Objectif
-L'objectif de ce projet est de concevoir une pipeline d'intégration continue (CI) et de déploiement continu (CD) pour le déploiement d'une application web sur un serveur accessible via SSH. L'apprenant devra mettre en œuvre les étapes nécessaires pour assurer la qualité et la sécurité du code tout en automatisant le processus de déploiement.
+L'objectif de ce projet est de concevoir une pipeline d'intégration continue (CI) et de déploiement continu (CD) pour le déploiement d'une application [spring boot](https://github.com/eazytraining/PayMyBuddy) sur un serveur accessible via SSH. L'apprenant devra mettre en œuvre les étapes nécessaires pour assurer la qualité et la sécurité du code tout en automatisant le processus de déploiement.
 
 ## Étapes de la Pipeline CI/CD
 
-La pipeline doit inclure les étapes suivantes :
+La pipeline doit inclure les étapes suivantes et les étapes doivent etre executés avec un agent de type docker:
 
-1. **Pre-commit**
-   - Validation des modifications avant le commit.
+1. **Tests Automatisés**
+   - Exécution de tests unitaires et d'intégration
 
-2. **Compilation**
-   - Compilation du code source.
+2. **Vérification de la Qualité de Code**
+   - Analyse statique du code pour respecter les normes de qualité avec [Sonarcloud](https://docs.sonarsource.com/sonarqube-cloud/).
 
-3. **Scan de Sécurité (Image Docker)**
-   - Analyse de l'image Docker pour détecter les vulnérabilités de sécurité.
+3. **Compilation et Packaging**
+   - Generation du fichier compilé de l'app du code source, build de l'image et envoi de l'image sur DockerHub
 
-4. **Tests Automatisés**
-   - Exécution de tests unitaires et d'intégration.
-
-5. **Vérification de la Qualité de Code**
-   - Analyse statique du code pour respecter les normes de qualité.
-
-6. **Packaging**
-   - Création d'un package déployable de l'application.
-
-7. **Déploiement en Review**
-   - Déploiement de l'application dans un environnement de revue.
-
-8. **Staging**
+4. **Staging**
    - Déploiement dans un environnement de pré-production.
 
-9. **Production**
+5. **Production**
    - Déploiement final dans l'environnement de production.
 
-10. **Tests de Validation des Déploiements**
+6. **Tests de Validation des Déploiements**
     - Vérification que le déploiement a réussi et que l'application fonctionne comme prévu.
+
+NB: A la fin de la pipeline une notification via slack portant sur le statu de la pipeline doit etre envoyé.
 
 ## Modèle Gitflow
 
 - Sur la **branche principale** (`main`), toutes les étapes doivent être exécutées, sauf le déploiement en review.
-- Sur les **autres branches**, seules les étapes suivantes doivent être exécutées :
-  - Pre-commit
-  - Compilation
-  - Scan de Sécurité (Image Docker)
+- Sur les **autres branches**, seules les étapes suivantes doivent être exécutées :-
   - Tests Automatisés
   - Vérification de la Qualité de Code
-- Lors d'une **Pull Request (PR)**, en plus des étapes précédentes, les étapes de packaging et de déploiement en review doivent être exécutées.
+  - Compilation et Packaging
+
 
 ## Exigences Techniques
 
