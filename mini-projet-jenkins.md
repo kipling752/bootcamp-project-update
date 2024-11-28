@@ -34,7 +34,7 @@ NB: A la fin de la pipeline une notification via slack portant sur le statu de l
   - Tests Automatisés
   - Vérification de la Qualité de Code
   - Compilation et Packaging
-- Lors d'une **Pull Request (PR)**, en plus des étapes précédentes, les étapes de packaging et de déploiement en review doivent être exécutées.
+
 
 ## Exigences Techniques
 
