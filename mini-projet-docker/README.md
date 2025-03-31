@@ -63,7 +63,16 @@ You will build and deploy the backend and MySQL database in Docker containers.
 The database schema is initialized using the initdb directory, which contains SQL scripts to set up the required tables and initial data. These scripts are automatically executed when the MySQL container starts.
 
 #### Extra Challenges (Optional)
-Secure Sensitive Information: Use Docker secrets or .env files to securely store sensitive information like database credentials.
+Secure Sensitive Information: Avoid hardcoding sensitive data such as database credentials directly in your Dockerfile. Instead, use Docker secrets or .env files to manage them securely. These environment variables can be set dynamically at runtime to protect sensitive information:
+
+```bash
+# Environment variables for database connection
+# Do not hardcode credentials; use secrets or environment files instead.
+
+# ENV SPRING_DATASOURCE_USERNAME  # Database username
+# ENV SPRING_DATASOURCE_PASSWORD  # Database password
+# ENV SPRING_DATASOURCE_URL       # Database connection URL
+```
 
 User Authentication: Add user authentication to the backend to restrict access to the API and transactions.
 
